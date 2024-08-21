@@ -2,7 +2,8 @@ package es.ecommerce.demo.domain.core.services;
 
 import es.ecommerce.demo.domain.api.PriceService;
 import es.ecommerce.demo.domain.core.model.Price;
-import es.ecommerce.demo.domain.spi.PriceRepository;
+import es.ecommerce.demo.infra.persistence.PriceRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +11,10 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class PriceServiceImpl implements PriceService {
 
     private final PriceRepository priceRepository;
-
-    @Autowired
-    public PriceServiceImpl(PriceRepository priceRepository) {
-        this.priceRepository = priceRepository;
-    }
 
     @Override
     public Optional<Price> getPrice(LocalDateTime applicationDate, Long productId, Long brandId) {

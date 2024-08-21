@@ -1,5 +1,6 @@
 package es.ecommerce.demo.infra.persistence.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,9 +18,16 @@ import java.util.Objects;
 @AllArgsConstructor
 public class PriceIdJPA implements Serializable {
 
+    @Column(name = "BRAND_ID")
     private int brandId;
+
+    @Column(name = "START_DATE")
     private LocalDateTime startDate;
+
+    @Column(name = "END_DATE")
     private LocalDateTime endDate;
+
+    @Column(name = "PRICE_LIST")
     private int priceList;
 
 
