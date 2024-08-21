@@ -1,6 +1,6 @@
 package es.ecommerce.demo.infra;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +19,7 @@ public class PriceControllerTest {
 
     @Test
     public void testGetProductPrice_Test1() throws Exception {
-        mockMvc.perform(get("/api/prices/product-price")
+        mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-14T10:00:00")
                 .param("productId", "35455")
                 .param("brandId", "1"))
@@ -27,12 +27,12 @@ public class PriceControllerTest {
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.brandId").value(1))
                 .andExpect(jsonPath("$.priceList").value(1))
-                .andExpect(jsonPath("$.price").value(35.50));
+                .andExpect(jsonPath("$.value").value(35.50));
     }
 
     @Test
     public void testGetProductPrice_Test2() throws Exception {
-        mockMvc.perform(get("/api/prices/product-price")
+        mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-14T16:00:00")
                 .param("productId", "35455")
                 .param("brandId", "1"))
@@ -40,12 +40,12 @@ public class PriceControllerTest {
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.brandId").value(1))
                 .andExpect(jsonPath("$.priceList").value(2))
-                .andExpect(jsonPath("$.price").value(25.45));
+                .andExpect(jsonPath("$.value").value(25.45));
     }
 
     @Test
     public void testGetProductPrice_Test3() throws Exception {
-        mockMvc.perform(get("/api/prices/product-price")
+        mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-14T21:00:00")
                 .param("productId", "35455")
                 .param("brandId", "1"))
@@ -53,12 +53,12 @@ public class PriceControllerTest {
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.brandId").value(1))
                 .andExpect(jsonPath("$.priceList").value(1))
-                .andExpect(jsonPath("$.price").value(35.50));
+                .andExpect(jsonPath("$.value").value(35.50));
     }
 
     @Test
     public void testGetProductPrice_Test4() throws Exception {
-        mockMvc.perform(get("/api/prices/product-price")
+        mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-15T10:00:00")
                 .param("productId", "35455")
                 .param("brandId", "1"))
@@ -66,12 +66,12 @@ public class PriceControllerTest {
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.brandId").value(1))
                 .andExpect(jsonPath("$.priceList").value(3))
-                .andExpect(jsonPath("$.price").value(30.50));
+                .andExpect(jsonPath("$.value").value(30.50));
     }
 
     @Test
     public void testGetProductPrice_Test5() throws Exception {
-        mockMvc.perform(get("/api/prices/product-price")
+        mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-16T21:00:00")
                 .param("productId", "35455")
                 .param("brandId", "1"))
@@ -79,6 +79,6 @@ public class PriceControllerTest {
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.brandId").value(1))
                 .andExpect(jsonPath("$.priceList").value(4))
-                .andExpect(jsonPath("$.price").value(38.95));
+                .andExpect(jsonPath("$.value").value(38.95));
     }
 }
