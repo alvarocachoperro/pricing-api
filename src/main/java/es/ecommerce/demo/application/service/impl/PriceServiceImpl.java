@@ -1,6 +1,6 @@
-package es.ecommerce.demo.application.service.service.impl;
+package es.ecommerce.demo.application.service.impl;
 
-import es.ecommerce.demo.application.service.service.PriceService;
+import es.ecommerce.demo.application.service.PriceService;
 import es.ecommerce.demo.domain.Price;
 import es.ecommerce.demo.application.repository.PriceRepository;
 import lombok.RequiredArgsConstructor;

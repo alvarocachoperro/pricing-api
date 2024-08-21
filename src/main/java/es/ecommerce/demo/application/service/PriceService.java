@@ -1,4 +1,4 @@
-package es.ecommerce.demo.application.service.service;
+package es.ecommerce.demo.application.service;
 
 import es.ecommerce.demo.domain.Price;
 
