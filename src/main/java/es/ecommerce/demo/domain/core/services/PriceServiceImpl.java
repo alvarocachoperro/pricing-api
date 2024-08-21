@@ -19,7 +19,7 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public Optional<Price> getPrice(LocalDateTime applicationDate, Long productId, Long brandId) {
         return Optional.ofNullable(
-                priceRepository.findApplicablePrice(applicationDate, productId.intValue(), brandId.intValue()).map(
+                priceRepository.findTopBy(applicationDate, productId.intValue(), brandId.intValue()).stream().findFirst().map(
                         priceJPA -> new Price((long)priceJPA.getProductId(), (long) priceJPA.getId().getBrandId(),
                                 priceJPA.getId().getPriceList(),
                                 priceJPA.getId().getStartDate(), priceJPA.getId().getEndDate(), priceJPA.getPrice())).orElse(null));
