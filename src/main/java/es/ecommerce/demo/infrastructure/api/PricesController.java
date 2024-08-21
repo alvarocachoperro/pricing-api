@@ -1,8 +1,8 @@
-package es.ecommerce.demo.infra.app;
+package es.ecommerce.demo.infrastructure.api;
 
 import es.ecommerce.demo.DemoApplication;
-import es.ecommerce.demo.domain.api.PriceService;
-import es.ecommerce.demo.domain.core.model.Price;
+import es.ecommerce.demo.application.service.service.PriceService;
+import es.ecommerce.demo.domain.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,6 @@
-package es.ecommerce.demo.infra.persistence;
+package es.ecommerce.demo.application.repository;
 
-import es.ecommerce.demo.infra.persistence.model.PriceJPA;
+import es.ecommerce.demo.infrastructure.db.springdata.dbo.PriceJPA;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

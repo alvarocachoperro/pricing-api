@@ -1,6 +1,6 @@
-package es.ecommerce.demo.domain.api;
+package es.ecommerce.demo.application.service.service;
 
-import es.ecommerce.demo.domain.core.model.Price;
+import es.ecommerce.demo.domain.Price;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

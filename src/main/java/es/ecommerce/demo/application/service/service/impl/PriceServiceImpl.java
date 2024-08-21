@@ -1,8 +1,8 @@
-package es.ecommerce.demo.domain.core.services;
+package es.ecommerce.demo.application.service.service.impl;
 
-import es.ecommerce.demo.domain.api.PriceService;
-import es.ecommerce.demo.domain.core.model.Price;
-import es.ecommerce.demo.infra.persistence.PriceRepository;
+import es.ecommerce.demo.application.service.service.PriceService;
+import es.ecommerce.demo.domain.Price;
+import es.ecommerce.demo.application.repository.PriceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
