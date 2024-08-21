@@ -25,7 +25,7 @@ This project is a Spring Boot application that provides a REST API for querying 
     - **controller**: Contains the REST controller (`PriceController.java`).
     - **service**: Contains the service layer (`PriceService.java`).
     - **repository**: Contains the repository interface (`PriceRepository.java`).
-    - **model**: Contains the JPA entity (`Price.java`) and composite key class (`PriceId.java`).
+    - **model**: Contains the JPA entity (`PriceJPA.java`) and composite key class (`PriceIdJPA.java`).
 - **src/main/resources**: Contains configuration files and SQL scripts.
     - **application.properties**: Configures the H2 database.
     - **data.sql**: Initializes the H2 database with sample data.
@@ -42,9 +42,10 @@ This project is a Spring Boot application that provides a REST API for querying 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/pricing-api.git
+   git clone https://github.com/alvarocachoperro/pricing-api.git
    cd pricing-api
    ```
+   
 2. **Build the project**:
     ```bash
     mvn clean install
@@ -59,7 +60,7 @@ This project is a Spring Boot application that provides a REST API for querying 
     - The application will start at http://localhost:8080.
     - You can query the price for a product using the endpoint:
     ```bash
-        GET /api/prices/product-price?date=2020-06-14T10:00:00&productId=35455&brandId=1
+        GET /product-price?date=2020-06-14T10:00:00&productId=35455&brandId=1
     ```
 ### API Endpoints
  - **GET /api/prices/product-price** 
@@ -73,7 +74,7 @@ This project is a Spring Boot application that provides a REST API for querying 
         - **`priceList`**: The applicable price list ID.
         - **`startDate`**: The start date of the price validity period.
         - **`endDate`**: The end date of the price validity period.
-        - **`price`**: The final price.
+        - **`value`**: The final price.
         - **`currency`**: The currency of the price.
 
 ### Testing
@@ -87,22 +88,22 @@ The application uses an in-memory H2 database that is automatically populated wi
 - **`URL`**: `http://localhost:8080/h2-console`
 - **`JDBC URL`**: `jdbc:h2:mem:testdb`
 - **`Username`**: `sa`
-- **`Password`**: `(leave empty)`
+- **`Password`**: `password`
 
 ### Example Queries
 Here are a few example queries you can try:
 
 - Test 1: Query price for product 35455 on 2020-06-14 at 10:00:00 for brand 1:
     ```bash
-    GET /api/prices/product-price?date=2020-06-14T10:00:00&productId=35455&brandId=1
+    GET /product-price?date=2020-06-14T10:00:00&productId=35455&brandId=1
     ```
 - Test 2: Query price for product 35455 on 2020-06-14 at 16:00:00 for brand 1:
     ```bash
-    GET /api/prices/product-price?date=2020-06-14T16:00:00&productId=35455&brandId=1
+    GET /product-price?date=2020-06-14T16:00:00&productId=35455&brandId=1
     ```
 - Test 3: Query price for product 35455 on 2020-06-15 at 10:00:00 for brand 1:
     ```bash
-    GET /api/prices/product-price?date=2020-06-15T10:00:00&productId=35455&brandId=1
+    GET /product-price?date=2020-06-15T10:00:00&productId=35455&brandId=1
     ```
 ### Troubleshooting
 - If you encounter any issues with the application, ensure that your environment meets the prerequisites and that the H2 database is correctly configured.
