@@ -1,10 +1,8 @@
 package es.ecommerce.demo.infrastructure.api;
 
-import es.ecommerce.demo.DemoApplication;
 import es.ecommerce.demo.application.service.service.PriceService;
 import es.ecommerce.demo.domain.Price;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +19,6 @@ public class PricesController {
     @Autowired
     public PricesController(PriceService priceService) {
         this.priceService = priceService;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
     }
 
     @GetMapping("/product-price")
