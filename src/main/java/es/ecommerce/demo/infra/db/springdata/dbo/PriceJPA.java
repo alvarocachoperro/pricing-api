@@ -1,4 +1,4 @@
-package es.ecommerce.demo.infrastructure.db.springdata.dbo;
+package es.ecommerce.demo.infra.db.springdata.dbo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,9 +27,10 @@ public class PriceJPA {
     private int priority;
 
     @Column(name = "PRICE")
-    private BigDecimal price;
+    private BigDecimal value;
 
     @Column(name = "CURR")
     private String currency;
+
 
 }

@@ -1,4 +1,4 @@
-package es.ecommerce.demo.infrastructure.db.springdata.dbo;
+package es.ecommerce.demo.infra.db.springdata.dbo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
