@@ -1,4 +1,4 @@
-package es.ecommerce.demo.infrastructure;
+package es.ecommerce.demo.infra;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PriceControllerTest {
+ class PriceControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testGetProductPrice_Test1() throws Exception {
+     void testGetProductPrice_Test1() throws Exception {
         mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-14T10:00:00")
                 .param("productId", "35455")
@@ -31,7 +31,7 @@ public class PriceControllerTest {
     }
 
     @Test
-    public void testGetProductPrice_Test2() throws Exception {
+     void testGetProductPrice_Test2() throws Exception {
         mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-14T16:00:00")
                 .param("productId", "35455")
@@ -44,7 +44,7 @@ public class PriceControllerTest {
     }
 
     @Test
-    public void testGetProductPrice_Test3() throws Exception {
+     void testGetProductPrice_Test3() throws Exception {
         mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-14T21:00:00")
                 .param("productId", "35455")
@@ -57,7 +57,7 @@ public class PriceControllerTest {
     }
 
     @Test
-    public void testGetProductPrice_Test4() throws Exception {
+     void testGetProductPrice_Test4() throws Exception {
         mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-15T10:00:00")
                 .param("productId", "35455")
@@ -70,7 +70,7 @@ public class PriceControllerTest {
     }
 
     @Test
-    public void testGetProductPrice_Test5() throws Exception {
+     void testGetProductPrice_Test5() throws Exception {
         mockMvc.perform(get("/product-price")
                 .param("date", "2020-06-16T21:00:00")
                 .param("productId", "35455")
