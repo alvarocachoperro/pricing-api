@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import es.ecommerce.demo.app.repository.PriceRepository;
+import es.ecommerce.demo.app.service.exception.IErrorMessages;
 import es.ecommerce.demo.app.service.exception.PriceNotFoundException;
 import es.ecommerce.demo.app.service.impl.PriceServiceImpl;
 import es.ecommerce.demo.domain.Price;
@@ -171,7 +172,7 @@ import org.mockito.MockitoAnnotations;
        PriceNotFoundException e = assertThrows(PriceNotFoundException.class, () -> priceService.getPrice(applicationDate, (long)productId, (long)brandId));
 
        // Assert
-       assertEquals("error.notFound", e.getMessage());
+       assertEquals(IErrorMessages.ERROR_NOTFOUND, e.getMessage());
     }
 
     private Price createMockPrice(int brandId, LocalDateTime startDate, LocalDateTime endDate, int priceList, int productId, int priority, BigDecimal price) {
