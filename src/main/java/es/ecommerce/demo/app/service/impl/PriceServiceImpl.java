@@ -1,6 +1,7 @@
 package es.ecommerce.demo.app.service.impl;
 
 import es.ecommerce.demo.app.service.PriceService;
+import es.ecommerce.demo.app.service.exception.PriceNotFoundException;
 import es.ecommerce.demo.domain.Price;
 import es.ecommerce.demo.app.repository.PriceRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,9 @@ public class PriceServiceImpl implements PriceService {
     private final PriceRepository priceRepository;
 
     @Override
-    public Price getPrice(LocalDateTime applicationDate, Long productId, Long brandId) {
+    public Price getPrice(LocalDateTime applicationDate, Long productId, Long brandId) throws PriceNotFoundException {
         return priceRepository.findByDateProductAndBrand(applicationDate, productId.intValue(), brandId.intValue()).stream().max(
-                Comparator.comparingInt(Price::getPriority)).orElse(null);
+                Comparator.comparingInt(Price::getPriority)).orElseThrow(()-> new PriceNotFoundException("error" +
+                ".notFound"));
     }
 }

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import es.ecommerce.demo.app.repository.PriceRepository;
+import es.ecommerce.demo.app.service.exception.PriceNotFoundException;
 import es.ecommerce.demo.app.service.impl.PriceServiceImpl;
 import es.ecommerce.demo.domain.Price;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +41,12 @@ import org.mockito.MockitoAnnotations;
         when(priceRepository.findByDateProductAndBrand(applicationDate, productId, brandId)).thenReturn(Arrays.asList(mockPrice));
 
         // Act
-        Price result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+        Price result = null;
+        try {
+            result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+        } catch (PriceNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         // Assert
         assertNotNull(result);
@@ -61,7 +67,12 @@ import org.mockito.MockitoAnnotations;
         when(priceRepository.findByDateProductAndBrand(applicationDate, productId, brandId)).thenReturn(Arrays.asList(mockPrice));
 
         // Act
-        Price result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+       Price result = null;
+       try {
+          result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+       } catch (PriceNotFoundException e) {
+          throw new RuntimeException(e);
+       }
 
         // Assert
         assertNotNull(result);
@@ -82,7 +93,12 @@ import org.mockito.MockitoAnnotations;
         when(priceRepository.findByDateProductAndBrand(applicationDate, productId, brandId)).thenReturn(Arrays.asList(mockPrice));
 
         // Act
-        Price result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+       Price result = null;
+       try {
+          result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+       } catch (PriceNotFoundException e) {
+          throw new RuntimeException(e);
+       }
 
         // Assert
         assertNotNull(result);
@@ -103,7 +119,12 @@ import org.mockito.MockitoAnnotations;
         when(priceRepository.findByDateProductAndBrand(applicationDate, productId, brandId)).thenReturn(Arrays.asList(mockPrice));
 
         // Act
-        Price result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+       Price result = null;
+       try {
+          result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+       } catch (PriceNotFoundException e) {
+          throw new RuntimeException(e);
+       }
 
         // Assert
         assertNotNull(result);
@@ -124,7 +145,12 @@ import org.mockito.MockitoAnnotations;
         when(priceRepository.findByDateProductAndBrand(applicationDate, productId, brandId)).thenReturn(Arrays.asList(mockPrice));
 
         // Act
-        Price result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+       Price result = null;
+       try {
+          result = priceService.getPrice(applicationDate, (long)productId, (long)brandId);
+       } catch (PriceNotFoundException e) {
+          throw new RuntimeException(e);
+       }
 
         // Assert
         assertNotNull(result);
@@ -132,6 +158,20 @@ import org.mockito.MockitoAnnotations;
         assertEquals(1, result.getBrandId());
         assertEquals(4, result.getPriceList());
         assertEquals(new BigDecimal("38.95"), result.getValue());
+    }
+
+    @Test
+    void testgetValue_Test6() {
+       // Arrange
+       LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 16, 21, 0, 0);
+       int productId = 35455;
+       int brandId = 1;
+
+       // Act
+       PriceNotFoundException e = assertThrows(PriceNotFoundException.class, () -> priceService.getPrice(applicationDate, (long)productId, (long)brandId));
+
+       // Assert
+       assertEquals("error.notFound", e.getMessage());
     }
 
     private Price createMockPrice(int brandId, LocalDateTime startDate, LocalDateTime endDate, int priceList, int productId, int priority, BigDecimal price) {
