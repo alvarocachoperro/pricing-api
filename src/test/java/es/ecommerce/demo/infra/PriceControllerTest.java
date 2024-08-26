@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     private MockMvc mockMvc;
 
     @Test
-     void testGetProductPrice_Test1() throws Exception {
+     void testGetProductPrice_ReturnsInitialPriceForMorningOnJune14() throws Exception {
         mockMvc.perform(get(API_URL)
                 .param("date", "2020-06-14T10:00:00")
                 .param("productId", "35455")
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     }
 
     @Test
-     void testGetProductPrice_Test2() throws Exception {
+     void testGetProductPrice_ReturnsDiscountedPriceForAfternoonOnJune14() throws Exception {
         mockMvc.perform(get(API_URL)
                 .param("date", "2020-06-14T16:00:00")
                 .param("productId", "35455")
@@ -46,7 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     }
 
     @Test
-     void testGetProductPrice_Test3() throws Exception {
+     void testGetProductPrice_ReturnsInitialPriceForEveningOnJune14() throws Exception {
         mockMvc.perform(get(API_URL)
                 .param("date", "2020-06-14T21:00:00")
                 .param("productId", "35455")
@@ -59,7 +59,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     }
 
     @Test
-     void testGetProductPrice_Test4() throws Exception {
+     void testGetProductPrice_ReturnsNewPriceForMorningOnJune15() throws Exception {
         mockMvc.perform(get(API_URL)
                 .param("date", "2020-06-15T10:00:00")
                 .param("productId", "35455")
@@ -72,7 +72,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     }
 
     @Test
-     void testGetProductPrice_Test5() throws Exception {
+     void testGetProductPrice_ReturnsLatestPriceForNightOnJune16() throws Exception {
         mockMvc.perform(get(API_URL)
                 .param("date", "2020-06-16T21:00:00")
                 .param("productId", "35455")
@@ -85,21 +85,38 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     }
 
     @Test
-    void testGetProductPrice_BadRequest() throws Exception {
+    void testGetProductPrice_whenParameterTypeMismatched_thenReturnsBadRequest() throws Exception {
         mockMvc.perform(get(API_URL)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                        .param("date", "35455")
+                        .param("productId", "2024-06-16T21:00:00")
+                        .param("brandId", "2024-06-16T21:00:00"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.message").value("Error:Parse attempt failed for value [35455]"));
     }
 
 
     @Test
-    void testGetProductPrice_NotFound() throws Exception {
+    void testGetProductPrice_whenAskedForPriceNotExisting_thenReturnsNotFound() throws Exception {
         mockMvc.perform(get(API_URL)
                         .param("date", "2024-06-16T21:00:00")
                         .param("productId", "35455")
                         .param("brandId", "1"))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string(IErrorMessages.ERROR_NOTFOUND));
+                .andExpect(jsonPath("$.status").value(404))
+                .andExpect(jsonPath("$.message").value(IErrorMessages.ERROR_NOTFOUND));
+    }
+
+    @Test
+    void givenMissingParameter_whenGetProductPrice_thenReturnsBadRequest() throws Exception {
+        mockMvc.perform(get(API_URL)
+                        .param("date", "2020-06-14T10:00:00")
+                        // Missing productId parameter
+                        .param("brandId", "1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.message").value("Parameter 'productId' is missing"));
     }
 
 }
