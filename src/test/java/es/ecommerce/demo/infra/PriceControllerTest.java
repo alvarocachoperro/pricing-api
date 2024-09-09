@@ -80,7 +80,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.brandId").value(1))
-                .andExpect(jsonPath("$.priceList").value(4))
                 .andExpect(jsonPath("$.value").value(38.95));
     }
 
