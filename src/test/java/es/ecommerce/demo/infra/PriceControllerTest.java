@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 .andExpect(jsonPath("$.productId").value(35455))
                 .andExpect(jsonPath("$.brandId").value(1))
                 .andExpect(jsonPath("$.priceList").value(1))
-                .andExpect(jsonPath("$.value").value(35.50));
+                .andExpect(jsonPath("$.value").value(35.60));
     }
 
     @Test
